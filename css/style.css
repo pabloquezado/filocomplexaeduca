@@ -1,0 +1,71 @@
+ body{
+    overflow-x: hidden;
+              }
+                #underline{
+                    text-decoration:none;
+                }
+                .mb-3{
+                  margin-bottom: 0px!important;
+                }
+   .conteudo{
+            background: white;
+            padding: 15px;
+        }
+    .hover{
+                cursor: pointer;
+            }
+ #sbutton{
+   position: absolute; bottom: 30px; right: 30px; width: 150px; float: right;
+                }
+                .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+.pagination {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.pagination a {
+    color: #007BFF;
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid #007BFF;
+    margin: 0 5px;
+    border-radius: 4px;
+}
+.pagination a:hover {
+    background-color: #007BFF;
+    color: white;
+}
+.pagination .active {
+    background-color: #007BFF;
+    color: white;
+}
+.card-container {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+.card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 20px 0px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+#unico{
+padding: 0px;
+}
+.mt-3{
+padding: 2px;
+}
+.card img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
