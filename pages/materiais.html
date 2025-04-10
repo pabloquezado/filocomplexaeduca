@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta property="og:type" content="website">
     <meta property="og:title" content="Filosofia, Educação e Ciências da Complexidade">
     <meta property="og:description" content="Estudos para uma educação eco-centrada">
-    <meta property="og:url" content="https://pabloquezado.github.io/filocomplexaeduca/">
-    <meta property="og:image" content="assets/capa.png"/>
+    <meta property="og:url" content="https://pabloquezado.github.io/fecc/">
+    <meta property="og:image" content="capa.png"/>
 
     <title>Filosofia, Educação e Ciências da Complexidade</title>
     <link rel="icon" type="image/x-icon" href="https://etimologia.com.br/wp-content/uploads/filosofia/filosofia-da-educacao.jpg">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/style.css">
-    <script src="../js/main.js"></script>
+<link rel="stylesheet" href="../css/style.css">
+
+<script src="../js/main.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
@@ -27,16 +28,16 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="index.html#init">Início</a>
+                <a class="nav-link active" aria-current="page" href="pages/index.html#init">Início</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="pages/sobre.html">Sobre</a>
+                <a class="nav-link" href="#">Sobre</a>
               </li>
           
               <li class="nav-item">
-                <a class="nav-link" href="pages/quemsomos.html">Quem somos</a>
+                <a class="nav-link" href="#">Quem somos</a>
               </li>
-              <!--
+                 <!--
               <li class="nav-item">
                 <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
               </li>
@@ -49,36 +50,33 @@
           </div>
         </div>
       </nav>
+      <script>
+        function loadPage(){
+          window.location="pages/pesquisa.html";
+        }
+      </script>
       <div class="container-fluid">
         <div class="row" style="background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaXi3nn_ic4zWuYSXdi85q8TSsKkQeEMFc5A&s'); background-size: fit;">
           <div class="col-md-3">
-           <!---->
+           <!-- abacaxi -->
         <div class="list-group">
         <div style="border: solid black 1px; background: url('https://media.nga.gov/iiif/23668001-95b1-4dec-a91d-eb302249918e/full/!588,600/0/default.jpg'); background-size:cover;"class="alert alert-success" role="alert">
+       
           <a href="#" style="text-decoration: none; color: black;">
           </a>
           <p class="mb-0">......<br><br><br><br></p>
         </div>
-      </div>
+      </div>      
             <div style="border: solid black 1px;"class="card my-3" id="unico">
         <img src="https://etimologia.com.br/wp-content/uploads/filosofia/filosofia-da-educacao.jpg" class="card-img-top" alt="1024 x 600 Image">
         <div style="background: rgb(27, 27, 27);"class="card-body">
           <h5 class="card-title" style="color: white;">Filosofia da Educação</h5>
           <p class="card-text" style="color: gray;">Este website ainda se encontra em desenvolvimento. Aguarde novidades!</p>
-          <a href="pages/novidades.html" class="btn btn-primary">Saiba mais</a>
+          <a href="#" class="btn btn-primary">Saiba mais</a>
         </div>
       </div>
           </div>
           <div class="col-md-6" style="background-color: white">
-            <h1 class="display-4">Boas-vindas!</h1>
-            <h6 class="mb-3">Por <a href="#">Coordenação</a> em 29-03-2025</h6>
-            Categorias: <a href="#" id="underline"class="badge bg-danger">#Filosofia</a>
-            <a href="#" id="underline" class="badge bg-success">#Educação</a>
-            <a href="#" id="underline" class="badge bg-primary">#Avisos</a>
-            <img src="https://blog.editoracontexto.com.br/wp-content/uploads/2022/05/IMAGEM-DESTAQUE-BLOG-7-809x285.png" class="img-fluid mt-3" alt="800 x 400 Image">
-         <div class="conteudo">
-           <br>
-            <div class="col-md-6" style="background-color: white">
             <h1 class="display-4">Materiais</h1>
             <h6 class="mb-3">Por <a href="#">Coordenação</a> em 09-04-2025</h6>
          <div class="conteudo">
@@ -90,7 +88,7 @@
             </p>
             <img src="https://static.thenounproject.com/png/3974658-200.png" style="float: left;width:25px;margin-right:10px;">
             <p style="text-align: justify; text-justify: inter-word;">
-             <a href="http://lattes.cnpq.br/6670202102281423">Baixar PDF</a>
+              <a href="../assets/Texto-Boff.pdf" download="Texto-Boff">Baixar PDF</a>
               </p><br>
               <p style="text-align: justify; text-justify: inter-word;"><b>BIBLIOGRAFIA:</b><br>BOFF, Leonardo. <b>Ecologia, Mundialização, Espiritualidade.</b> Rio de Janeiro: Editora Record, 2008. 240 p.
               </p>
@@ -98,6 +96,7 @@
 <!--   <img style="max-width: 80%;  display: block; margin: auto;"src="https://www.essentiafoundation.org/wp-content/uploads/shutterstock_1109403383-copy-2000x1000.jpg">-->
             <hr class="my-2">
             <h1 class="display-6 mb-2">Avisos recentes</h1>
+            
             <div class="card">
         <div class="card-header" style="text-align: left;">
           <img src="https://etimologia.com.br/wp-content/uploads/filosofia/filosofia-da-educacao.jpg" style="float: left; width: 25px; border-radius: 100px; margin-right: 15px;">
@@ -141,56 +140,12 @@
                 <div class="card"> 
                   <a href="#">
                     <img src= 
-    "https://www.sinfazerj.org.br/wp-content/uploads/2022/05/9f655889-0_i0ojmzqdg4if4eyf_.jpg"
+    "https://media.geeksforgeeks.org/img-practice/banner/gate-crash-course-2024-thumbnail.png?v=19630"
                         alt="Image 4"></a>
                     <h3>Primeiro encontro </h3> 
                     <p>Acessar materiais utilizados</p> 
                 </div> 
-                <div class="card"> 
-                  <a href="#">
-                    <img src= 
-    "https://ejef.tjmg.jus.br/wp-content/uploads/2022/01/pessoas_Grupo-Estudos.png"
-                        alt="Image 5"></a>
-                   <br><br><br><br><br><h3>Sobre o Grupo de Estudos</h3> 
-                    <p></p> 
-                </div> 
-                <div class="card"> 
-                  <a href="#">
-                    <img src= 
-    "https://uniformesnatalrn.com.br/image/catalog/sobre-nos.png"
-                        alt="Image 6"></a>
-                    <h3>Quem somos</h3> 
-                    <p>Clique e saiba mais</p> 
-                </div> 
-                <div class="card"> 
-                  <a href="#">
-                    <img src= 
-    "https://etimologia.com.br/wp-content/uploads/filosofia/filosofia-da-educacao.jpg"
-                        alt="Image 7"></a>
-                    <h3>Filosofia da Educação</h3> 
-                    <p>O pensamento filosófico e seus desdobramentos.</p> 
-                </div> 
-                <div class="card"> 
-                    <img src= 
-    "https://media.geeksforgeeks.org/img-practice/banner/dsa-interview-preparation-classroom-thumbnail.png?v=19631"
-                        alt="Image 8"> 
-                    <h3>dsa interview preparation classroom</h3> 
-                    <p>This is the content of Card 8.</p> 
-                </div> 
-                <div class="card"> 
-                    <img src= 
-    "https://media.geeksforgeeks.org/img-practice/banner/complete-interview-preparation-thumbnail.png?v=19631"
-                        alt="Image 9"> 
-                    <h3>complete interview preparation</h3> 
-                    <p>This is the content of Card 9.</p> 
-                </div> 
-                <div class="card"> 
-                    <img src= 
-    "https://media.geeksforgeeks.org/img-practice/banner/Data-Structures-With-Python-thumbnail.png?v=19631"
-                        alt="Image 10"> 
-                    <h3>Data Structures With Python</h3> 
-                    <p>This is the content of Card 10.</p> 
-                </div> 
+               
                 <!-- Add more cards as needed -->
             </div> 
         </div> 
@@ -203,53 +158,51 @@
             <a id="next" class="hover">Próximo</a> 
             <p id="page-numbers"> </p> 
         </div> 
-      </div>
-          </div>
-          <div class="col-md-3">
-            <div style="background: url('https://i.pinimg.com/236x/6f/e5/0f/6fe50f60c227c72db9d04737ee2a746e.jpg');"class="alert alert-success" role="alert">
-        <h4 style="padding: 0px; background-color: rgba(255, 255, 255, 0.486); color: black;"class="alert-heading"></h4>
-        
-        <a href="#" style="text-decoration: none; color: black;">
-        <!--<p style="background-color: rgba(255, 255, 255, 0.753);">"A vida não é útil" de Ailton Krenak</p>-->
-        </a>
-       
-        <hr>
-        <p class="mb-0"></p><br>
-      </div>
+      </div>        
+</div>
+<div class="col-md-3">
+  <div style="background: url('https://i.pinimg.com/236x/6f/e5/0f/6fe50f60c227c72db9d04737ee2a746e.jpg');"class="alert alert-success" role="alert">
+<h4 style="padding: 0px; background-color: rgba(255, 255, 255, 0.486); color: black;"class="alert-heading"></h4>
+
+<a href="#" style="text-decoration: none; color: black;">
+<!--<p style="background-color: rgba(255, 255, 255, 0.753);">"A vida não é útil" de Ailton Krenak</p>-->
+</a>
+
+<hr>
+<p class="mb-0"></p><br>
+</div>
             
-
-      <div class="card mt-3">
+<div class="card mt-3">
+  <h5 class="card-header">
+  IEAR/UFF
+  </h5>
+  <a href="https://iear.uff.br/">
+    <br>
+ <img src="https://iear.uff.br/wp-content/uploads/sites/232/2021/08/cropped-WhatsApp-Image-2021-08-12-at-11.33.49-1.jpeg">
+</a>
+<hr>
+<h5 class="card-header">
+  Plataforma de Reuniões
+  </h5>
+  <a href="#">
+<img style="padding: 25px;"src="https://sinasefe.org.br/site/wp-content/uploads/sites/3/2020/01/6reuniaodnsite.png">
+</a>
+<p style="padding: 4px; margin-top: -10px; margin-left: 1rem; margin-right: 1rem;">Participe das reuniões em tempo real com nosso aplicativo on-line</p>
+<a href="#" class="btn btn-primary" style="width: fit-content;margin:auto;">Acessar</a>
+<hr>  
+</div>
+            <div class="card mt-3">
         <h5 class="card-header">
-        IEAR/UFF
+          Postagens recentes
         </h5>
-        <a href="https://iear.uff.br/">
-          <br>
-       <img src="https://iear.uff.br/wp-content/uploads/sites/232/2021/08/cropped-WhatsApp-Image-2021-08-12-at-11.33.49-1.jpeg">
-      </a>
-      <hr>
-      <h5 class="card-header">
-        Plataforma de Reuniões
-        </h5>
-        <a href="#">
-        <img style="padding: 25px;"src="https://sinasefe.org.br/site/wp-content/uploads/sites/3/2020/01/6reuniaodnsite.png">
-        </a>
-        <p style="padding: 4px; margin-top: -10px; margin-left: 1rem; margin-right: 1rem;">Participe das reuniões em tempo real com nosso aplicativo on-line</p>
-   <a href="#" class="btn btn-primary" style="width: fit-content;margin:auto;">Acessar</a>
-      <hr>  
-    </div>
-
-    <div class="card mt-3">
-      <h5 class="card-header">
-        Postagens recentes
-      </h5>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item"><a href="index.html#init">Convite para Grupo de Estudos</a></li>
-        <li class="list-group-item"><a href="cronograma.html">Cronograma das Reuniões</a></li>
-        <li class="list-group-item"><a href="materiais.html">Materiais</a></li>
-        <li class="list-group-item"><a href="inaugural.html">Encontro inaugural - Apresentação</a></li>
-        <li class="list-group-item"><a href="#">1º Encontro - As várias dimensões da Ecologia</a></li>
-      </ul>
-    </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><a href="#">Convite para Grupo de Estudos</a></li>
+          <li class="list-group-item"><a href="#">Cronograma das Reuniões</a></li>
+          <li class="list-group-item"><a href="#">Materiais</a></li>
+          <li class="list-group-item"><a href="#">Encontro inaugural - Apresentação</a></li>
+          <li class="list-group-item"><a href="#">1º Encontro - As várias dimensões da Ecologia</a></li>
+        </ul>
+      </div>
           </div>
         </div>
       </div>
