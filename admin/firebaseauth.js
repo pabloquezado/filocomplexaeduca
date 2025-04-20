@@ -63,7 +63,7 @@ signIn.addEventListener('click', (event)=>{
        window.alert("Login efetuado com sucesso.")
        const user=userCredential.user;
        localStorage.setItem('loggedInUserId', user.uid);
-       window.location.href='../index.html';
+       window.location.href='admin.html';
    })
    .catch((error)=>{
        const errorCode=error.code;
