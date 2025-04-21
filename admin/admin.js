@@ -11,11 +11,17 @@ const firebaseConfig = {
     appId: "1:319356886739:web:c6f3d7a62f684e5079fe26"
   };
  
-  // Initialize Firebase
+  // Inicializar Firebase
   const app = initializeApp(firebaseConfig);
 
   const auth=getAuth();
   const db=getFirestore();
+
+  onAuthStateChanged(auth, (user)=>{
+    if(!user) {
+        window.location = '../index.html';
+      }
+        })
 
   onAuthStateChanged(auth, (user)=>{
     const loggedInUserId=localStorage.getItem('loggedInUserId');
