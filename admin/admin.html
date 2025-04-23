@@ -25,6 +25,84 @@
    <script type="module" src="admin.js"></script>	
   </head>
 <body>
+    <style>
+    [contenteditable]:focus {
+    outline: auto;
+}
+         body{
+          caret-color:black;
+    overflow-x: hidden;
+              }
+                #underline{
+                    text-decoration:none;
+                }
+                .mb-3{
+                  margin-bottom: 0px!important;
+                }
+   .conteudo{
+            background: white;
+            padding: 15px;
+        }
+    .hover{
+                cursor: pointer;
+            }
+ #sbutton{
+   position: absolute; bottom: 30px; right: 30px; width: 150px; float: right;
+                }
+                .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+.pagination {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.pagination a {
+    color: #007BFF;
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid #007BFF;
+    margin: 0 5px;
+    border-radius: 4px;
+}
+.pagination a:hover {
+    background-color: #007BFF;
+    color: white;
+}
+.pagination .active {
+    background-color: #007BFF;
+    color: white;
+}
+.card-container {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+.card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 20px 0px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+#unico{
+padding: 0px;
+}
+.mt-3{
+padding: 2px;
+}
+.card img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+    </style>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
         <div class="container-fluid">
           <a class="navbar-brand" href="#"></a>
@@ -98,40 +176,90 @@
                 var data_atual = d.getDate();
                 var mes_atual = d.getMonth() + 1; //Months are zero based
                 var ano_atual = d.getFullYear();
-                admin.innerHTML = `Por <a href="#">Coordenação</a> em` + " " + data_atual + "-" + mes_atual + "-" + ano_atual;
+                admin.innerHTML = `Por <a href="blog.html">Coordenação</a> em` + " " + data_atual + "-" + mes_atual + "-" + ano_atual;
             </script>
 
             <div id="barra" class="toolbar" hidden="true">
-                <button>Título</button>
+                <button onclick="addTitulo()">Título</button>
                 <button id="boldButton">Negrito</button>
                 <button id="italicButton">Itálico</button>
                 <button id="underlineButton">Underline</button>
                 <button onclick="addLink()" id="linkButton">Link</button>
+                <button onclick="criarImg()">Criar imagem</button>
                 <button onclick="changeImg()">Imagem</button>
                 <button onclick="changeYT()">YouTube</button>
               </div>
 
-         <div contenteditable class="conteudo">
+         <div id="tudo" contenteditable class="conteudo">
 <!-- -->
 <script>
 const barra = document.getElementById("barra");
 
-function MouseOver(elem) {
+function MouseOver() {
 barra.hidden=false;
 }
-function MouseOut(elem) {
+function MouseOut() {
 barra.hidden=true;
 }
 
+function pasteHtmlAtCaret(html) {
+        let sel, range;
+        if (window.getSelection) {
+          // para IE9 e navegadores não-Internet-Explorer
+          sel = window.getSelection();
+          if (sel.getRangeAt && sel.rangeCount) {
+            range = sel.getRangeAt(0);
+            range.deleteContents();
+
+            // Range.createContextualFragment() seria bom aqui mas é
+            // não convencional e incompatível com a maioria dos navegadores (IE9, etc.)
+            const el = document.createElement("div");
+            el.innerHTML = html;
+            let frag = document.createDocumentFragment(),
+              node,
+              lastNode;
+            while ((node = el.firstChild)) {
+              lastNode = frag.appendChild(node);
+            }
+            range.insertNode(frag);
+
+            // Preserva a seleção
+            if (lastNode) {
+              range = range.cloneRange();
+              range.setStartAfter(lastNode);
+              range.collapse(true);
+              sel.removeAllRanges();
+              sel.addRange(range);
+            }
+          }
+        } else if (document.selection && document.selection.type != "Control") {
+          // IE < 9
+          document.selection.createRange().pasteHTML(html);
+        }
+      }
+function addTitulo(){
+  const exe = document.getElementById('tudo');
+  exe.focus(); 
+  pasteHtmlAtCaret(`<h2 id="anchor"onclick="MouseOver(this);" onclick="MouseOut(this);" onClick="appearEdit();"class="display-6 mb-2" contenteditable>Subtítulo</h2>`);
+}
+function criarImg(){
+  const exe = document.getElementById('tudo');
+  exe.focus(); 
+  pasteHtmlAtCaret(`<img id="imgEx"contenteditable style="max-width: 100%; display: block;margin:auto;"src="https://picsum.photos/300/200">`);
+}
 function addLink() {
-  if (window.getSelection().toString()) {
+  var link = window.prompt("Digitar link");
+  const exe = document.getElementById('tudo');
+  exe.focus(); 
+  pasteHtmlAtCaret(`<a href="${link}">` + link +`</a>`);
+    /*if (window.getSelection().toString()) {
     var a = document.createElement('a');
     var link = window.prompt("Digitar link");
     a.href = link;
     barra.hidden=true;
     a.onclick=window.open(link,'_blank');
     window.getSelection().getRangeAt(0).surroundContents(a);
-  }
+  }*/
 }
 
 const editor = document.getElementById("editor");
@@ -179,7 +307,7 @@ img.src = url;
            <img id="imgEx"contenteditable style="max-width: 100%; display: block;margin:auto;"src="https://picsum.photos/300/200"> 
             <p contenteditable style="text-align: justify; text-justify: inter-word;">
             <br>
-            Clique aqui para editar este parágrafo. Para adicionar imagens, clique com o botão direito e em <b>"copiar</b>." Em seguida, use <b>CTRL + V</b> para adicionar a imagem. <br><br>Você também pode clicar no botão "imagem" e inserir um endereço para alterar essa primeira imagem.<br><br>Para remover imagens, utilize <b>backspace</b>. <br><br>Todos os componentes podem ser <b>selecionados, copiados e colados</b>, agilizando o processo de construção da página.</p>
+            Clique aqui para editar este parágrafo. Para adicionar imagens, clique com o botão direito na imagem desejada e em <b>"copiar</b>." Em seguida, clique na área desejada e use <b>CTRL + V</b> para adicionar imagem, na mesma forma como se estivesse colando texto. <br><br>Você também pode clicar no botão "imagem" e inserir a URL (botão direito > copiar endereço da imagem) para alterar essa primeira imagem.<br><br>Para remover imagens, selecione com o mouse e utilize <b>backspace</b>. <br><br>Todos os componentes podem ser <b>selecionados, copiados e colados</b>, agilizando o processo de construção da página.</p>
             <h2 class="display-6 mb-2" contenteditable>Formatação de texto</h2>
             <p contenteditable style="text-align: justify; text-justify: inter-word;">
             <br>
@@ -187,39 +315,165 @@ img.src = url;
 
 <br><figure contenteditable class="bg-light p-3 pb-2" style="border-left: 5px solid #666;"><blockquote class="blockquote">Citação</blockquote><figcaption class="blockquote-footer">Autor(es)</figcaption></figure>
             <p onclick="changeYT();" contenteditable style="text-align: justify; text-justify: inter-word;"><b>Clique aqui para alterar o vídeo do YouTube</p></b>
-            <div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 75%;"><iframe id="YouTubeVID"src="https://www.youtube.com/embed/Q-c5_xnRsTI?rel=0" style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" allowfullscreen scrolling="no" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share;"></iframe></div>
+            <div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 75%;"><iframe id="YouTubeVID"src="https://www.youtube.com/embed/Nhom_vWVFos" style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" allowfullscreen scrolling="no" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share;"></iframe></div>
             <br> 
-            <p contenteditable style="text-align: justify; text-justify: inter-word;"><b>BIBLIOGRAFIA:</b><br><br>BOFF, Leonardo. <b>Ecologia, Mundialização, Espiritualidade.</b> Rio de Janeiro: Editora Record, 2008. 240 p. <a href="../assets/Texto-Boff.pdf" download="Texto-Boff">Acessar material</a></p>
-            <p contenteditable style="text-align: justify; text-justify: inter-word;">CAPRA, Fritjof. <b>O Ponto de Mutação: A Ciência, a Sociedade e a Cultura Emergente</b>. 25. ed. São Paulo: Cultrix, 1982.</p>
-            <p contenteditable style="text-align: justify; text-justify: inter-word;">MORIN, Edgar. <b>Introdução ao pensamento complexo</b>, 3º Ed. Porto Alegre: Sulina, 2007.
-            </p>
-<!-- -->             
+            <p contenteditable style="text-align: justify; text-justify: inter-word;"><b>BIBLIOGRAFIA:</b><br><br>NOBRE, Antônio Donato. <b>Antônio Donato Nobre no Selvagem ciclo 2019</b>. In: SELVAGEM CICLO DE ESTUDOS SOBRE A VIDA, 2019, Rio de Janeiro, 12-15 nov. 2019. Vídeo (28 min). Disponível em: <a href="https://www.youtube.com/watch?v=Nhom_vWVFos">https://www.youtube.com/watch?v=Nhom_vWVFos</a></p>    
+<!-- -->         
     </div>
     <div id="barra" class="toolbar">
-    <button onclick="showSource();">Salvar</button>
-    </div>
+    <button onclick="showSource();">Visualizar</button>
+    <input id="here" type="text">
+    <br><br>Salvar em qual categoria?
+    <select id="options">
+      <option value="1"></option>
+      <option value="Galeria">Galeria</option>
+      <option value="Materiais">Materiais</option>
+      <option value="Postagens">Postagens</option>
+      <option value="Quem somos">Quem somos</option>
+      <option value="6">Outra</option>
+    </select>
+    <input id="outra" style="position: absolute;display:none; float:right;" placeholder="Sugerir nova categoria..." type="text">
+    <button id="saveReal">Salvar</button>
 
+    <br><br><br>
+    <button onclick="limpar();">Limpar</button>
+    <button onclick="template();">Modelo inicial</button>
+<hr>
+Editar outras páginas
+
+    <select id="pages">
+      <option value="1"></option>
+      <option value="Galeria">Galeria</option>
+      <option value="Quem somos">Quem somos</option>
+      <option value="Materiais">Materiais</option>
+    </select>
+    <button onclick="carregarPage();" style="color: white;background:cornflowerblue;">Carregar</button>
+    </div>
+<!--
+<table>
+<button id="notyet" style="color: white;background:green;">Minhas páginas</button>
+</table>
+-->
     <script>
-        function showSource(){;
+
+  function carregarPage(){
+  const pages = document.getElementById("pages");
+
+  if (pages.value === "1"){
+    alert("Selecione uma página")
+  }
+ else if(pages.value === "Galeria"){
+      const exe = document.getElementById('tudo');
+      exe.innerHTML=(`  <br>
+           <h2 class="display-6 mb-2">1º encontro - As várias dimensões da Ecologia</h2>
+           <img style="max-width: 100%; display: block;margin:auto;"src="../assets/encontro1.jpeg"> 
+            <p style="text-align: justify; text-justify: inter-word;">
+            <br>
+            Primeira reunião do grupo de estudos, realizada em 16/04. Em um primeiro momento, houve um breve diálogo sobre uma visão mecanicista de mundo, seguida de uma uma breve introdução ao Pensamento Sistêmico, onde dialogamos as diferenças entre máquinas e organismos vivos.<br><br>
+Em segundo momento, dialogamos sobre o filme <b>"Ponto de Mutação"</b> de Bernt Amadeus Capra, de 1990, dando início as principais passagens do texto de Leonardo Boff. <br><br>Ao final do encontro, cada um de nós selecionou uma palavra para definir o encontro de hoje, sendo elas:</p>
+<br><figure class="bg-light p-3 pb-2" style="border-left: 5px solid #666;"><blockquote class="blockquote">Vida, beleza, luz, transformação, trocas, respirar.</blockquote><figcaption class="blockquote-footer">Pablo, Fernanda, Carlos, Andreza, Kariely e Silmara</figcaption></figure>
+            <p style="text-align: justify; text-justify: inter-word;"><b>Filme "O Ponto de Mutação" (1990)</p></b>
+            <div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 75%;"><iframe src="https://www.youtube.com/embed/Q-c5_xnRsTI?rel=0" style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" allowfullscreen scrolling="no" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share;"></iframe></div>
+            <br> 
+            <p style="text-align: justify; text-justify: inter-word;"><b>BIBLIOGRAFIA:</b><br><br>BOFF, Leonardo. <b>Ecologia, Mundialização, Espiritualidade.</b> Rio de Janeiro: Editora Record, 2008. 240 p. <a href="../assets/Texto-Boff.pdf" download="Texto-Boff">Acessar material</a></p>
+            <p style="text-align: justify; text-justify: inter-word;">CAPRA, Fritjof. <b>O Ponto de Mutação: A Ciência, a Sociedade e a Cultura Emergente</b>. 25. ed. São Paulo: Cultrix, 1982.</p>
+            <p style="text-align: justify; text-justify: inter-word;">MORIN, Edgar. <b>Introdução ao pensamento complexo</b>, 3º Ed. Porto Alegre: Sulina, 2007.
+            </p>`);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  if (pages.value === "Quem somos"){
+    const exe = document.getElementById('tudo');
+    exe.innerHTML=(`            <h2 class="display-6 mb-2">Silmara Marton</h2>
+           <img style="float: left; max-width: 25%; margin-right: 20px;"src="http://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&amp;id=K4757468A2"> 
+            <p style="text-align: justify; text-justify: inter-word;">
+                É com imensa alegria que convidamos os alunos de graduação do IEAR para o grupo de estudos intitulado <b>Filosofia, Educação e Ciências da Complexidade:</b> estudos para uma "ecologia das ideias." Nosso objetivo é propor um espaço de discussão para o exercício do pensamento sistêmico por meio do estudo de autores de diversas áreas do conhecimento que entrem em diálogo com questões pertinentes a filosofia, sustentabilidade, a religação entre cultura científica e cultura humanística e para uma educação eco-centrada.
+            </p>
+            <img src="https://lh5.googleusercontent.com/proxy/4d6-dVOcMrp7HoU9t-bhgfgoqSLWbcgosoSMPp956YzTQzTfRfFDiUXR3hssFIJDTEe0ozmcq4wv6E7AiZn7-kNEwVvhboggb9gHgMMh-webTRvzg8ndDb7Sffpa9N2N4ThiQboH11-KkcPt_C4Qj0ZXxeEREqmIp7k" style="float: left;width:25px;margin-right:10px;">
+            <p style="text-align: justify; text-justify: inter-word;">
+             <a href="http://lattes.cnpq.br/6670202102281423">Currículo Lattes</a>
+              </p>
+              <p style="text-align: justify; text-justify: inter-word;">
+                <img src="https://cdn-icons-png.flaticon.com/512/6711/6711567.png" style="float: left;width:25px;margin-right:10px;">
+                <a href="http://lattes.cnpq.br/6670202102281423">silmaramarton@id.uff.br</a>
+                 </p>
+            <hr>
+            <h2 class="display-6 mb-2">Pablo Quezado</h2>
+            <img style="float: left; max-width: 30%; margin-right: 20px;"src="http://servicosweb.cnpq.br/wspessoa/servletrecuperafoto?tipo=1&id=K1197212A3"> 
+             <p style="text-align: justify; text-justify: inter-word;">
+                 Olá, me chamo Pablo e sou estudante do curso de graduação em Pedagogia pelo Instituto de Educação de Angra dos Reis (IEAR/UFF).
+             </p>
+            <p style="text-align: justify; text-justify: inter-word;">
+              Sou bolsista de iniciação científica do projeto "Estudos para uma Filosofia voltada à Educação Eco-centrada" fomentado pelo Programa Institucional de Bolsas de Iniciação Científica (PIBIC) da UFF e coordenado pela Profa. Silmara Marton no Instituto de Educação de Angra dos Reis da Universidade Federal Fluminense.
+            </p>
+            <p style="text-align: justify; text-justify: inter-word;">
+                Desenvolvi este website com o intuito de promover uma aproximação entre nosso grupo, comunidade acadêmica e demais interessados. Por meio do Grupo de Estudos <b>Filosofia, Educação e Ciências da Complexidade</b>, este sítio web tem o objetivo de compartilhar as experiências obtidas nos encontros, disponibilizar materiais e servir como espaço para o exercício do Pensamento Complexo, sobretudo em seus desdobramentos para a Filosofia na direção de uma educação eco-centrada.
+              </p>
+<img src="https://lh5.googleusercontent.com/proxy/4d6-dVOcMrp7HoU9t-bhgfgoqSLWbcgosoSMPp956YzTQzTfRfFDiUXR3hssFIJDTEe0ozmcq4wv6E7AiZn7-kNEwVvhboggb9gHgMMh-webTRvzg8ndDb7Sffpa9N2N4ThiQboH11-KkcPt_C4Qj0ZXxeEREqmIp7k" style="float: left;width:25px;margin-right:10px;">
+            <p style="text-align: justify; text-justify: inter-word;">
+             <a href="http://lattes.cnpq.br/3986415920870527">Currículo Lattes</a>
+            </p>
+            <a href="">
+                <img src="https://cdn-icons-png.flaticon.com/512/6711/6711567.png" style="float: left;width:25px;margin-right:10px;">
+            <p style="text-align: justify; text-justify: inter-word;">pabloquezado@id.uff.br</p>
+            </a>`);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  if (pages.value === "Materiais"){
+    const exe = document.getElementById('tudo');
+    exe.innerHTML=(`            <br>
+            <h2 class="display-6 mb-2">As várias dimensões da Ecologia</h2>
+            <img style="max-width: 500px; src="../assets/ecologia.jpg" class="img-fluid mt-3" alt="ecologia">
+            <p style="text-align: justify; text-justify: inter-word;">
+            </p>
+            <img src="https://static.thenounproject.com/png/3974658-200.png" style="float: left;width:25px;margin-right:10px;">
+            <p style="text-align: justify; text-justify: inter-word;">
+              <a href="../assets/Texto-Boff.pdf" download="Texto-Boff">Baixar PDF</a>
+              </p><br>
+              <p style="text-align: justify; text-justify: inter-word;"><b>BIBLIOGRAFIA:</b><br>BOFF, Leonardo. <b>Ecologia, Mundialização, Espiritualidade.</b> Rio de Janeiro: Editora Record, 2008. 240 p.
+              </p>`);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}
+function template(){
+  location.reload();
+}
+function limpar(){
+  const exe = document.getElementById("tudo");
+  exe.innerHTML="";
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  MouseOver();
+  }
+    const options = document.getElementById("options");
+    const other = document.getElementById("outra");
+
+    options.addEventListener('change', function(e){
+      if (e.target.value === "6"){
+        other.style.display="block";
+      }
+      else{
+        other.style.display="none";
+      }
+    })
+
+    function showSource(){;  
     var source = "<html>";
     source += document.getElementsByTagName('html')[0].innerHTML;
     source += "</html>";
     //now we need to escape the html special chars, javascript has escape
     //but this does not do what we want
-    source = source.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    //*source = source.replace(/</g, "&lt;").replace(/>/g, "&gt;");
     //now we add <pre> tags to preserve whitespace
-    source = "<pre>"+source+"</pre>";
+    //*source = "<pre>"+source+"</pre>";
     //now open the window and set the source as the content
+    document.getElementById("here").value = source;
     sourceWindow = window.open('','Source of page','height=800,width=800,scrollbars=1,resizable=1');
     sourceWindow.document.write(source);
     sourceWindow.document.close(); //close the document for writing, not the window
     //give source window focus
     if(window.focus) sourceWindow.focus();
-    
-setTimeout(function() { sourceWindow.scrollTo(0,3625) }, 1000);
 }
     </script>
-<!--   <img style="max-width: 80%;  display: block; margin: auto;"src="https://www.essentiafoundation.org/wp-content/uploads/shutterstock_1109403383-copy-2000x1000.jpg">-->
+<!--   <img style="max-width: 80%;  display: block; margin: auto;"src="https://www.essentiafoundation.org/wp-content/uploads/shutterstock_1109403383-copy-2000x1000.jpg">-->           
             <hr class="my-2">
             <h1 class="display-6 mb-2">Avisos recentes</h1>
 <div class="card">
