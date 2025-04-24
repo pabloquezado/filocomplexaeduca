@@ -3,12 +3,12 @@
 import {getFirestore, setDoc, doc} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 
  const firebaseConfig = {
-   apiKey: "AIzaSyCCV3-Mjk8hYv5hba9qbCM0DUTXQNp9FDE",
-   authDomain: "login-form-d0508.firebaseapp.com",
-   projectId: "login-form-d0508",
-   storageBucket: "login-form-d0508.firebasestorage.app",
-   messagingSenderId: "319356886739",
-   appId: "1:319356886739:web:c6f3d7a62f684e5079fe26"
+   apiKey: process.env.API_KEY,
+   authDomain: process.env.AUTH_DOMAIN,
+   projectId: process.env.PROJECT_ID,
+   storageBucket: process.env.STORAGE_BUCKET,
+   messagingSenderId: process.env.SENDER_ID,
+   appId: process.env.APP_ID
  };
  // Inicializar Firebase
  const app = initializeApp(firebaseConfig);
