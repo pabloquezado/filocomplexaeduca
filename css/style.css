@@ -15,6 +15,7 @@
                 cursor: pointer;
             }
 .clickable{
+	         padding: 15px;
 	         transition: all 0.6s ease;
           }
 .clickable:hover{
