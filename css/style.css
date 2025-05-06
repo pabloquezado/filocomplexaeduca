@@ -72,6 +72,38 @@ margin-top: 15px;
     }
 }
 
+/* Responsividade Mobile - Materiais (Imagens) */
+
+            @media only screen and (max-width: 770px){
+             .container-fluid > .row > .col-md-6 > .conteudo > img{
+              width: 300px;
+            }
+          }
+
+/* Responsividade Mobile - Materiais (Página) */
+
+@media only screen and (max-width: 770px){
+            .container-fluid > .row > .col-md-6 > .card > .card-body > .blockquote.mb-0 > p{
+font-size: 4vmin;
+text-align: center;
+margin-bottom: 1.5rem;
+            }
+.blockquote-footer{
+font-size: 3.5vw;
+}
+.blockquote-footer > a{
+margin: 0.9rem;
+}
+}
+@media only screen and (min-width: 575px){
+            .container-fluid > .row > .col-md-6 > .card > .card-body > .blockquote.mb-0 > p{
+font-size: 19px;
+}
+.blockquote-footer{
+font-size: 19px;
+}
+}
+
 /* Paginações */
 
 .pagination {
