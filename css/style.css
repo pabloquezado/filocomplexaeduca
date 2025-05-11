@@ -104,6 +104,25 @@ font-size: 19px;
 }
 }
 
+/* Responsividade Mobile - Postagens */
+
+@media only screen and (max-width: 791px){
+  .clickable > h4{
+    text-align: left;
+  }
+  .clickable > img{
+    margin-left: 0!important;
+    margin-bottom: 1em;
+    float: left!important;
+  }
+}
+@media only screen and (max-width: 900px){
+  .clickable > img{
+    margin-bottom: 1em;
+    float: none !important;
+  }
+}
+
 /* Paginações */
 
 .pagination {
